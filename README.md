@@ -1,30 +1,33 @@
-# Curriculum template
+# Recursion
 
-## Source
+## Overview
 
-This template is based on the [Leap Day](https://pages-themes.github.io/leap-day/) theme, by [mattgraham](https://twitter.com/mattgraham).
+An introduction to recursion in Java, using the well-known problems:
 
-## Use
+* Computing factorials.
 
-Create a curriculum module (lesson, activity, assignment, practical exam problem) as follows:
+* Computing Fibonacci numbers.
 
-1. Select this as a template when creating a new repository in GitHub, and clone the repository to your local system. 
+* Testing strings to determine whether they are palindromes.
 
-    Alternatively, copy the `docs` directory from a local clone of this repository to the target repository on your local system.
+* Euclid's algorithm for finding the greatest common divisor of 2 integers.
 
-2. Add additional directories &amp; files, as necessary, for code &amp; libraries.
+For more information, see [docs](index.md).
 
-3. Develop code in the usual fashion, committing to Git and pushing to GitHub as appropriate.
+## License information
 
-4. Edit `docs/_config.yml` to set the site title, description, and other site-level metadata.
+This curriculum module was written by Nick Bennett, with Todd Nordquist and Rishita Hariyani.
 
-5. Edit `docs/index.md` and create additional documentation files (all in `docs` or a subdirectory of `docs`) as necessary.
+Copyright 2020 Deep Dive Coding/CNM Ingenuity, Inc.
 
-6. Edit the front matter of `docs/index.md` (and other `.md` files, as appropriate) to set page title, description, and other page-level metadata.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-7. Commit changes, additions, and deletions to Git as usual, and push to GitHub.
+<http://www.apache.org/licenses/LICENSE-2.0>
 
-8. Modify the repository settings in GitHub to enable GitHub Pages, using the `docs` directory of the `master` branch as the source.
-
-9. After any documentation changes, be sure to commit, push, and then review the appearance of the GitHub Pages web site.
-
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
