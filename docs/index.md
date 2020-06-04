@@ -15,6 +15,7 @@ In computing, _recursion_ is a general approach in which the solution to a probl
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
 Given the sequence $A$, 
+
 $$
 \begin{aligned}
 A &= \left( a_0, a_1, \ldots \right),
@@ -22,6 +23,7 @@ A &= \left( a_0, a_1, \ldots \right),
 $$
 
 a recurrence relation may be defined (in very general terms) as 
+
 $$
 \begin{aligned}
 a_n &= f\left( a_0, a_1, \ldots, a_{n-1} \right).
@@ -33,6 +35,7 @@ In most cases, the function $f$ isn't expressed as a function of _all_ the prece
 ### Example: The factorial function
 
 The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
+
 $$
 n! = 
 \begin{cases}
@@ -42,13 +45,15 @@ n! =
 $$
 
 Note that the $\prod$ symbol is the product operator. In this case, we would read 
+
 $$
 \prod_{i=1}^n i
 $$
 
 as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using the product operator, we could write this as $1 \cdot 2 \cdot \ldots \cdot n$.
 
-There are other ways to define the factorial function, including this one that employs a recurrence relation:<a name="fn1"></a>  
+<a name="fn1"></a>There are other ways to define the factorial function, including this one that employs a recurrence relation:  
+
 $$
 \tag{1}
 n! = 
@@ -109,7 +114,7 @@ That is, any single character, or even an empty string, reads the same forward a
 
 As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the code expression might look very different from the expression of the problem in natural language. This is one of the ways in which a recursive solution can help: the recursive implementation is often very close to the natural language expression.
 
-Let's start with this formal definition (ignoring the whole question of whitespace, punctuation, and special symbols for now):<a name="fn2"></a>
+<a name="fn2"></a>Let's start with this formal definition (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
 > A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
@@ -149,4 +154,4 @@ The main disadvantages of recursion (apart from the difficulty we might have wra
 
     In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the machine (virtual or otherwise) doesn't crash. Code on other threads (particularly those threads assigned to cores other than that assigned to the infinitely-looping thread) will continue to run.
     
-    In a recursive implementation, bad/mssing 
+    In a recursive implementation, bad/missing stopping conditions will most often result in stack memory being exhausted. In the best case,  
