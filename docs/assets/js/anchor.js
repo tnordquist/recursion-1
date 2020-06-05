@@ -18,4 +18,10 @@ $(document).on('click', 'a[href^="#"]', function(event) {
 });
 
 // Set the offset when entering page with hash present in the url
-window.setTimeout(offsetAnchor, 10);
+// window.setTimeout(offsetAnchor, 10);
+
+$(window).on("load", function() {
+  MathJax.Hub.Queue(function () {
+    offsetAnchor();
+  });
+});
