@@ -252,7 +252,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
     
     * Behavior:
         * If parameter value is a palindrome, the method must return `true`; otherwise, the method must return `false`.
-        * The method should assume that the parameter will not contain any punctuation or spaces, and that all characters will use the same letter case.
+        * The method may assume that the parameter will not contain any punctuation or spaces, and that all characters will use the same letter case. More correctly, this method must not attempt to deal with (by removing or altering) any whitespace or punctuation characters, or any mixed letter-casing.
 
 #### Tests
 
@@ -311,47 +311,100 @@ Commit your work to Git (after completing each task&mdash;including optional tas
     
     2. Modify the `FactorialsTest.computeRecursive` method to use the `BigInteger` type for the expected and actual values.
 
-* Implement &amp; test an iterative approach
+* Implement &amp; test iterative approach
 
     1. Implement a `Factorials.computeIterative` method, with the same modifiers, return type, and parameter type as `Factorials.computeRecursive`, but using the iterative computation method given in [(1)](#factorial-iterative).
     
     2. Add a `computeIterative` test method to the `FactorialsTest` class. This method should have the same annotation, modifiers, and return type as `FactorialsTest.computeRecursive`, and should use the same test cases&mdash;but the actual values tested (against the expected values) should be those returned from `Factorials.computeIterative`, instead of `Factorials.computeRecursive`.
     
-* Javadocs
-
-    1. Add Javadoc comments to the class and method(s) in `Factorials`.
-    
-        * Every documentation comment should include a summary sentence (at least), and any additional descriptive sentences that you feel necessary to describe the purpose or functionality of the documented element.
-        
-        * Avoid the _imperative voice_ in your comments; instead use (preferably) the _active voice_ or (when necessary) the _passive voice_.
-        
-            * Bad: "Compute the factorial function value (n!) for the provided parameter value."
-            
-            * Better: "Computes the factorial function value (n!) for the provided parameter value."  
-
-            * Even better: "Computes the factorial function value (n!) for the provided parameter value. Since the return type is {@code long}, the value returned for parameter values greater than 20 will not be correct." 
-            
-                (Note: The additional description sentence above is only applicable if you have not already completed the task to [handle large values](#handle-large-values).)
-    
-        * Remember to include summaries (at least) for the `@param` and `@return` tags of the method(s). 
-    
-        (Hint: Use the IntelliJ IDEA [automatic comments feature](https://www.jetbrains.com/help/idea/working-with-code-documentation.html#auto-comment) to generate the Javadoc comment structures; then simply add the summary sentences and any additional descriptions.)
-    
-    2. Use the **Tools/Generate Javadoc** command to generate documentation files in HTML format.
-    
-        * Generate Javadoc scope: Whole project
-        
-        * Include test sources: No (i.e. unchecked)
-        
-        * Output directory: `docs/api` within the project directory (Use the folder button in the **Output directory** field to browse to and select the project's directory; then edit the resulting path in **Output directory** by appending `\docs\api` or `/docs/api`, for Windows or OS X, respectively).
-        
-        * Documentation level (slider): protected
-        
-        * Other command line arguments: `-windowtitle "Recursion examples" -link https://docs.oracle.com/en/java/javase/11/docs/api/`
-            
-            (Note: The command line arguments must be entered as a single line, regardless of their appearance in this page.)  
-        
-        * _Other options: (Leave set to default values)_
-        
 ### Palindromes
 
+* Implement &amp; test input normalization method
+
+    Currently, the `Palindromes.testRecursive` method can only correctly handle parameter values that are precise palindromes; that is, all letter casing, whitespace, and punctuation in the parameter value provided by a given invocation must also match when reversed. In most cases, this will not give the desired results unless any argument passed to that method is already normalized&mdash;with whitespace and punctuation removed, and all characters converted to one letter case. This task will address this shortcoming with a _wrapper_ method, capable of coverting a denormalized input string to a normalized form, and then delegating the palindrome testing to the `testRecursive` class.
+    
+    1. In the `Palindromes` class, define a method to normalize a `String`, and then test it:
+ 
+        * Method name: `testDenormalized`
+     
+        * Access level: `public`
+     
+        * Scope: `static`
+     
+        * Return type: `boolean`
+     
+        * Parameter: 
+            * Type: `String` 
+            * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
+     
+        * Behavior:
+            * Invoke `testRecursive`, passing it an argument obtained from the parameter of this method, after removing all punctuation and whitespace, and then converting it to lower-case.
+            * Return as a result the value returned from the `testRecursive` invocation. 
+            * If parameter value is a palindrome, the method must return `true`; otherwise, the method must return `false`.
+ 
+            Hints 
+            
+            * The `String.removeAll` method can return a `String` with unwanted characters stripped from an input `String`, by invoking it on the input `String`, and passing arguments specifying the appropriate regular expression pattern to match and an empty replacement `String`.
+        
+            * The regex pattern `"[\W_]+"` matches any sequence containing 1 or more punctuation, whitespace, or underscore characters.
+ 
+     2. In the `PalindromesTest` class, defined a method to test the `Palindromes.testDenormalized` method:
+     
+        * Method name: `testDenormalized`
+        
+        * Annotation: `@Test`
+        
+        * Access level: _(default/package-private)_
+        
+        * Return type: `void`
+        
+        * Parameters: none 
+        
+        * Behavior: Use the appropriate JUnit5 assertion(s) to test the cases in the table below. The first column shows the value that should be passed as an argument to the `Palindromes.computeRecursive` method; the second shows the expected value to be returned.
+        
+             | `s` | Expected return value of `Palindromes.testDenormalized(s)` |
+             |:-:|:-:|
+             | `"radar"` | `true` |
+             | `"Radar"` | `true` |
+             | `"A man, a plan, a canal - Panama!"` | `true` |
+             | `"A man, a plan, a dam - Hoover!"` | `false` |
+             | `"aBbA"` | `true` |
+          
+ * Implement &amp; test iterative 
+ 
+### Javadocs
+
+1. Add Javadoc comments to the classes and methods in the `edu.cnm.deepdive` package of the project.
+
+    * Every documentation comment should include a summary sentence (at least), and any additional descriptive sentences that you feel necessary to describe the purpose or functionality of the documented element.
+    
+    * Avoid the _imperative voice_ in your comments; instead use (preferably) the _active voice_ or (when necessary) the _passive voice_.
+    
+        * Bad: "Compute the factorial function value (n!) for the provided parameter value."
+        
+        * Better: "Computes the factorial function value (n!) for the provided parameter value."  
+
+        * Even better: "Computes the factorial function value (n!) for the provided parameter value. Since the return type is {@code long}, the value returned for parameter values greater than 20 will not be correct." 
+        
+            (Note: The additional description sentence above is only applicable if you have not already completed the task to [handle large values](#handle-large-values).)
+
+    * Remember to include summaries (at least) for the `@param` and `@return` tags of the method(s). 
+
+    (Hint: Use the IntelliJ IDEA [automatic comments feature](https://www.jetbrains.com/help/idea/working-with-code-documentation.html#auto-comment) to generate the Javadoc comment structures; then simply add the summary sentences and any additional descriptions.)
+
+2. Use the **Tools/Generate Javadoc** command to generate documentation files in HTML format.
+
+    * Generate Javadoc scope: Whole project
+    
+    * Include test sources: No (i.e. unchecked)
+    
+    * Output directory: `docs/api` within the project directory (Use the folder button in the **Output directory** field to browse to and select the project's directory; then edit the resulting path in **Output directory** by appending `\docs\api` or `/docs/api`, for Windows or OS X, respectively).
+    
+    * Documentation level (slider): protected
+    
+    * Other command line arguments: `-windowtitle "Recursion examples" -link https://docs.oracle.com/en/java/javase/11/docs/api/`
+        
+        (Note: The command line arguments must be entered as a single line, regardless of their appearance in this page.)  
+    
+    * _Other options: (Leave set to default values)_
+    

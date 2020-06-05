@@ -91,9 +91,9 @@ div.wrapper {
 
                 &.tag-h3 {
                     text-align: right;
-                    list-style-type: circle;
+                    list-style-type: ' -';
+                    font-size: smaller;
                     direction:rtl;
-                    margin: 0 1em;
                 }
 
                 &.tag-h4, &.tag-h5, &.tag-h6 {
