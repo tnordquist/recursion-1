@@ -108,6 +108,10 @@ div.wrapper {
                 &.tag-h4, &.tag-h5, &.tag-h6 {
                     display: none;
                 }
+
+                span.no-nav {
+                    display: none;
+                }
             }
         }
         
