@@ -126,7 +126,7 @@ Please note these key points about the definition:
 
 * The logical structure (indicated by the indentation and the all-caps words) of the bullets is a Boolean expression, of the form $A$ OR ($B$ AND $C$). We might also write this using special symbols for the logical operators: $A \lor (B \land C)$. 
 
-    In this context (logical rather than arithmetic), the logical operators should be considered _short-circuit_ operators. When using short-circuit logical operators, the rules about parentheses are modified a bit: In this case, $A$ would be evaluated _first_; only if $A$ is $\text{false}$ do we have to evaluate the expression in parentheses. 
+    In this context (logical rather than arithmetic), the logical operators should be considered _short-circuit_ operators. When using short-circuit logical operators, the rules about parentheses are modified a bit: In this case, $A$ would be evaluated _first_; if (and only if) $A$ is $\text{false}$, then we have to evaluate the expression in parentheses. 
 
 * The definition is recursive. Note the final underlined portion: It is saying that a string is a palindrome if a specified substring is a palindrome. (Of course, that is only the case if the previous condition&mdash;that the first and last characters are the same&mdash;is also satisfied.)
 
@@ -195,7 +195,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
     * Parameter: 
         * Type: `int` 
         * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
-    * Behavior:
+    * Behavior:<a name="factorial-test-hint"></a>
         * If parameter value < 0, `IllegalArgumentException` must be thrown;
         * otherwise, if parameter value &le; 20, correct factorial function value must be returned;
         * otherwise, behavior is undefined (i.e. no exception should be thrown, but the method is not required to return the correct value).
@@ -204,7 +204,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
 
 1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialsTest`.
 
-    <a name="factorial-test-hint"></a>Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
+    Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
     
 2. In the test class, define a method conforming to the following:
 
@@ -412,3 +412,6 @@ Commit your work to Git (after completing each task&mdash;including optional tas
     
     * _Other options: (Leave set to default values)_
     
+```
+Testing
+```
