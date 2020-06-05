@@ -13,8 +13,8 @@ $(document).on('click', 'a[href^="#"]', function(event) {
   // causes offsetAnchor to be called after the page jump.
   window.setTimeout(function() {
     offsetAnchor();
-  }, 1);
+  }, 10);
 });
 
 // Set the offset when entering page with hash present in the url
-window.setTimeout(offsetAnchor, 1);
+window.setTimeout(offsetAnchor, 10);
