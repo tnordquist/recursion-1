@@ -3,7 +3,7 @@ function offsetAnchor() {
   if (location.hash.length !== 0) {
     const banner = $('#banner');
     const bottom = banner.position().top + banner.outerHeight(true);
-    window.scrollTo(window.scrollX, window.scrollY - 2 * bottom);
+    window.scrollTo(window.scrollX, window.scrollY - bottom);
   }
 }
 
@@ -13,8 +13,8 @@ $(document).on('click', 'a[href^="#"]', function(event) {
   // causes offsetAnchor to be called after the page jump.
   window.setTimeout(function() {
     offsetAnchor();
-  }, 2);
+  }, 1);
 });
 
 // Set the offset when entering page with hash present in the url
-window.setTimeout(offsetAnchor, 2);
+window.setTimeout(offsetAnchor, 1);
