@@ -21,13 +21,18 @@ ul {
     list-style: disc;
 }
 
-pre, code {
-    background-color: #242626;
-}
-
 code {
     margin: 0;
     padding: 2px;
+    color: #242626;
+    background-color: #e1e2e1;
+    text-shadow: none;
+}
+
+pre {
+    code {
+        background-color: #242626;
+    }
 }
 
 header {
