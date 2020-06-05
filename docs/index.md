@@ -107,9 +107,9 @@ Somewhat less obviously, we also consider these to be palindromes:
 * X
 * 
 
-That is, any single character, or even an empty string, reads the same forward and backward.
+<a name="fn2"></a>That is, any single character, or even an empty string, reads the same forward and backward.
 
-<a name="fn2"></a>As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
+As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
 Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
@@ -155,3 +155,59 @@ The main disadvantages of recursion (apart from the difficulty we might have in 
 
 ## Tasks
 
+To explore recursion in Java, we'll implement the the 2 examples above: factorials and palindromes.
+ 
+### Preparation
+
+1. Create an IntelliJ Java project with the following characteristics:
+ 
+     * JDK version: 11
+     * Project name: `recursion`
+     * Project location: `~/Desktop/projects/bootcamp/recursion` (`~` represents the user's home directory; slash direction should be adjusted as necessary for the platform.) 
+     
+2. Use the **File/Project Structure** command to configure the `recursion` module (the only module) as follows: 
+
+     * **Sources** must include a `test` directory (in the project root), configured as a **Tests** (test sources) directory.
+     * **Dependencies** must include JUnit5 with **Test** scope. 
+
+### Factorials
+
+#### Implementation
+
+1. Create a class with the fully qualified class name `edu.cnm.deedpive.Factorial`.
+
+2. In the class created in step 1, define a method implementing the the recursive approach shown in [(1)](#fn1), conforming to these specifications:
+
+    * Method name: `computeRecursive`
+    * Access level: `public`
+    * Scope: `static`
+    * Return type: `long`
+    * Parameter: 
+        * Type: `int` 
+        * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
+    * Behavior:
+        * If parameter value < 0, `IllegalArgumentException` must be thrown;
+        * otherwise, if parameter value &le; 20, correct factorial function value must be returned;
+        * otherwise, behavior is undefined (i.e. no exception should be thrown, but the method is not required to return the correct value).
+
+#### Tests
+
+1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialTest`.
+
+    Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
+    
+2. In the test class, define a method conforming to the following:
+
+    * Method name: `computeRecursive`
+    * Access level: _(default/package-private)_
+    * Return type: `void`
+    * Parameters: none 
+    * Behavior: Use the appropriate JUnit5 assertion(s) to test the cases in the table below. The first column shows the value that should be passed as an argument to the `Factorial.computeRecursive` method; the second shows the expected value to be returned (if an exception isn't thrown); the third shows the expected exception (if any).
+    
+         | `n` | Expected return value | Expected exception |
+         |:-:|:-:|:-:|
+         | 0 | 1 | _(none)_ |
+         | 1 | 1 | _(none)_ |
+         | 5 | 120 | _(none)_ |
+         | 10 | 3628800 | _(none)_ |
+         | -1 | _(none)_ | `IllegalArgumentException` |
