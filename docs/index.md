@@ -8,7 +8,7 @@ layout: default
 
 In computing, _recursion_ is a general approach in which the solution to a problem with a given set of input values is defined in terms of solutions to the same problem with a reduced set of input values, or with input values that are smaller in magnitude. By re-invoking with progressively smaller problems, until we reach some specified _stopping condition_, we can then incorporate the solutions to the smaller problems into the solutions to the larger problems.
 
-## Recurrence relations <span class="no-nav" markdown="1">in mathematics</span>
+## Recurrence relations
 
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
@@ -29,6 +29,8 @@ a_n &= f\left( a_0, a_1, \ldots, a_{n-1} \right).
 $$
 
 <a name="factorial-iterative"></a>In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
+ 
+Problems that can be defined using recurrence relations are prime candidates for recursive implementations.
  
 ### Example: Factorials
 
@@ -88,9 +90,9 @@ What we're seeing here is&mdash;essentially&mdash;the internal workings of compu
  
 As it turns out, the expression for the factorial function specified in [(2)](#factorial-recursive) can be translated to code quite easily&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
   
-## Non-mathematical problems
+## Other applications
 
-<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many types of non-mathematical problems can be expressed in recursive terms. A number of puzzles&mdash;such as the _Tower of Hanoi_&mdash;can best be understood in recursive terms. The task of parsing the source code of many programming languages, during compilation, is often expressed&mdash;in the design as well as the implementation&mdash;as a recursive process. Even parsing natural language is&mdash;in part&mdash;a recursive task.
+<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many of non-mathematical problems can be expressed in recursive terms&mdash;with potential for recursive implementation&mdash;as well. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing the source code of many programming languages, during compilation, is often sepecified and implemented as a recursive process. Even parsing natural language is at least partially a recursive task.
 
 ### Example: Palindromes
 
@@ -110,9 +112,9 @@ Somewhat less obviously, we also consider these to be palindromes:
 * X
 * 
 
-That is, any single character, or even an empty string, reads the same forward and backward.
+That is, any single character, or even an empty string, reads the same forward and backward, and is thus a palindrome (though certainly a trivial one).
 
-<a name="palindrome-recursive"></a>As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
+<a name="palindrome-recursive"></a>As we move from the basic definition to code (if, for example, we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
 Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
@@ -134,7 +136,7 @@ Take a few minutes to read and understand the definition. Then try to apply it t
     
 Though the definition specified in [(4)](#palindrome-recursive) is more verbose than "a palindrome is a string that reads the same forward and backward," it is still reasonably clear; more importantly, it can be translated to code in a very direct fashion, resulting in an implementation that will be easy for us to compare for correctness with the original definition.
 
-## Advantages of recursion
+## Advantages
 
 The last paragraph of both of the 2 examples above get at some of the key benefits of recursion:
 
@@ -142,7 +144,7 @@ The last paragraph of both of the 2 examples above get at some of the key benefi
 
 * When going from a recursive definition in a natural language to a recursive implementation in a programming language, verifying the resulting code for correctness is usually easier than when using non-recursive definitions and implementations.    
  
-## Disadvantages of recursion
+## Disadvantages
 
 The main disadvantages of recursion (apart from the difficulty we might have in wrapping our heads around the concept at first) have to do with method invocation and the corresponding stack space. 
 

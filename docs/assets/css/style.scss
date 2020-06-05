@@ -84,6 +84,11 @@ div.wrapper {
             
                 //font-family: "Aleo", "Copse", serif;
                 font-family: "Roboto", "Quattrocento Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                margin-top: 0.5em;
+
+                &:first-child {
+                    margin-top: 0;
+                }
 
                 a {
 
