@@ -8,7 +8,7 @@ layout: default
 
 In computing, _recursion_ is a general approach in which the solution to a problem with a given set of input values is defined in terms of solutions to the same problem with a reduced set of input values, or with input values that are smaller in magnitude. By re-invoking with progressively smaller problems, until we reach some specified _stopping condition_, we can then incorporate the solutions to the smaller problems into the solutions to the larger problems.
 
-## Recurrence relations
+## Mathematical recurrence
 
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
@@ -82,7 +82,7 @@ $$
 \end{aligned}  
 $$
 
-Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. In order to compute $5!$, we take the product of $5$ and $4!$. But in order to compute that, we need to compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
+Imagine that each set of parentheses represents execution of a computational method for evaluating the factorial function. In order to compute $5!$, we multiply $5$ and $4!$. But in order to compute that, we need to compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
 
 When we get to an expression that includes $0!$, we don't need to break that term down any further, since our definition tells us that $0! = 1$. (This is a _stopping condition._) From that point, we can start completing the computations that are pending: in each of the last 5 lines, we're replacing a set of parentheses with the result obtained by computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
 
@@ -92,7 +92,7 @@ As it turns out, the expression for the factorial function specified in [(2)](#f
   
 ## Other applications
 
-<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many of non-mathematical problems can be expressed in recursive terms&mdash;with potential for recursive implementation&mdash;as well. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing the source code of many programming languages, during compilation, is often sepecified and implemented as a recursive process. Even parsing natural language is at least partially a recursive task.
+<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many non-mathematical problems can be expressed in recursive terms&mdash;with potential for recursive implementation&mdash;as well. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (during compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
 
 ### Example: Palindromes
 
