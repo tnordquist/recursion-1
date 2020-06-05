@@ -50,9 +50,9 @@ $$
 \prod_{i=1}^n i
 $$
 
-as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using the product operator, we could write this as $1 \cdot 2 \cdot \ldots \cdot n$.
+as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using the product operator, we could write this as $1 \cdot 2 \cdot \ldots \cdot n$.<a name="fn1"></a>
 
-<a name="fn1"></a>There are other ways to define the factorial function, including this one that employs a recurrence relation:  
+There are other ways to define the factorial function, including this one that employs a recurrence relation:  
 
 $$
 \tag{1}
@@ -111,9 +111,9 @@ Somewhat less obviously, we also consider these to be palindromes:
 
 That is, any single character, or even an empty string, reads the same forward and backward.
 
-As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
+<a name="fn2"></a>As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
-<a name="fn2"></a>Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
+Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
 > A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
