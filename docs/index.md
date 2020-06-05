@@ -1,6 +1,6 @@
 ---
 title: Recursion
-description: "An introduction to recursion using 3 simple problems"
+description: "An introduction to recursion with examples and code exercises"
 layout: default
 ---
 
