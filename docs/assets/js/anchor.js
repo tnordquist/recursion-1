@@ -8,20 +8,20 @@ function offsetAnchor() {
   }
 }
 
-// Captures click events of all <a> elements with href starting with #
-$(document).on('click', 'a[href^="#"]', function(event) {
-  // Click events are captured before hashchanges. Timeout
-  // causes offsetAnchor to be called after the page jump.
+function scheduleOffset(delay) {
   window.setTimeout(function() {
     offsetAnchor();
-  }, 10);
+  }, delay);
+}
+
+// Captures click events of all <a> elements with href starting with #
+$(document).on('click', 'a[href^="#"]', function(event) {
+  scheduleOffset(1);
 });
 
-// Set the offset when entering page with hash present in the url
-// window.setTimeout(offsetAnchor, 10);
-
+// When page is loaded, enqueue the adjustment in MathJax rendering queue.
 $(window).on("load", function() {
   MathJax.Hub.Queue(function () {
-    offsetAnchor();
+    scheduleOffset(100);
   });
 });
