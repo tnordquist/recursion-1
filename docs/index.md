@@ -81,15 +81,13 @@ $$
 \end{aligned}  
 $$
 
-Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. So, in order to compute $5!$, we start executing the method for that. Using the recurrence relation above, we compute $5!$ by computing the product of $5$ and $4!$; so, in order to compute the original product, we must first compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
+Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. In order to compute $5!$, we start executing the method: Using the recurrence relation above, we compute $5!$ by computing the product of $5$ and $4!$. But in order to compute that product, we must first compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
 
-When we get to an expression that includes $1!$, we don't need to break that term down any further, since our definition tells us that $1! = 1$. (This is a _stopping condition._) From that point, we're actually able to start completing the computations that have been waiting: in each of the last 5 lines, we're replacing a set of parentheses with the result of computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
+When we get to an expression that includes $0!$, we don't need to break that term down any further, since our definition tells us that $0! = 1$. (This is a _stopping condition._) From that point, we're actually able to start completing the computations that are pending: in each of the last 5 lines, we're replacing a set of parentheses with the result obtained by computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
 
 What we're seeing here is&mdash;essentially&mdash;the internal workings of computing $5!$ by recursion: each time we replace $m!$ with $(m \cdot (m - 1)!)$, we're starting a new recursion computation. Each time we replace a set of parentheses with the computed value, we're completing a recursive computation. Eventually (if we've done our job correctly), we have no parentheses left&mdash;instead, we have the result, which (in this case) is $120$.
-
-(Please keep in mind, when reading the sets of parentheses in the expressions above, we're not using Java syntax; for now, try to focus on the concept of recursive computation, and on the fundamental arithmetic rule that the innermost parentheses must be evaluated first.)
  
-As it turns out, the expression for the factorial function specified in [(1)](#fn1) is very easily expressible in code&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
+As it turns out, the expression for the factorial function specified in [(1)](#fn1) can be translated to code quite easily&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
   
 ## Non-mathematical problems
 
@@ -113,23 +111,23 @@ Somewhat less obviously, we also consider these to be palindromes:
 
 That is, any single character, or even an empty string, reads the same forward and backward.
 
-As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the code expression might look very different from the expression of the problem in natural language. This is one of the ways in which a recursive solution can help: the recursive implementation is often very close to the natural language expression.
+As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
-<a name="fn2"></a>Let's start with this formal definition (ignoring the whole question of whitespace, punctuation, and special symbols for now):
+<a name="fn2"></a>Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
 > A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
-> * **or** 
+> * **OR** 
 >     * the first and last characters of the string are the same,
->     * **and** the entire substring between the first and last characters (exclusive) _is a palindrome_.
+>     * **AND** the entire substring between the first and last characters (exclusive) <u>is a palindrome</u>.
 
 Please note these key points about the definition:
 
-* The logical structure (indicated by the indentation and the words in boldface) of the bullets is a Boolean expression, of the form $A$ OR ($B$ AND $C$). We might also write this using special symbols for the logical operators: $A \lor (B \land C)$. 
+* The logical structure (indicated by the indentation and the all-caps words) of the bullets is a Boolean expression, of the form $A$ OR ($B$ AND $C$). We might also write this using special symbols for the logical operators: $A \lor (B \land C)$. 
 
     In this context (logical rather than arithmetic), the logical operators should be considered _short-circuit_ operators. When using short-circuit logical operators, the rules about parentheses are modified a bit: In this case, $A$ would be evaluated _first_; only if $A$ is $\text{false}$ do we have to evaluate the expression in parentheses. 
 
-* The definition is recursive. Note the final part in italics: it is saying that a string is a palindrome if a specified substring is a palindrome. (Of course, that is only the case if the previous condition&mdash;that the first and last characters are the same&mdash;is also satisfied.)
+* The definition is recursive. Note the final underlined portion: It is saying that a string is a palindrome if a specified substring is a palindrome. (Of course, that is only the case if the previous condition&mdash;that the first and last characters are the same&mdash;is also satisfied.)
 
 Take a few minutes to read and understand the definition. Then try to apply it to one of the palindromes listed above, or so some other palindrome you know&mdash;or some synthetic palindrome you come up with, such as "XYX". Try also to applying it to a string that's not a palindrome.  
     
