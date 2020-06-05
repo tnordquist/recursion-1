@@ -16,12 +16,14 @@ function scheduleOffset(delay) {
 
 // Captures click events of all <a> elements with href starting with #
 $(document).on('click', 'a[href^="#"]', function(event) {
+  console.log("Scheduling from click");
   scheduleOffset(1);
 });
 
 // When page is loaded, enqueue the adjustment in MathJax rendering queue.
 $(window).on("load", function() {
   MathJax.Hub.Queue(function () {
+    console.log("Scheduling from MathJax queue");
     scheduleOffset(100);
   });
 });
