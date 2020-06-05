@@ -14,7 +14,7 @@ In computing, _recursion_ is a general approach in which the solution to a probl
 
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
-Given the sequence $A$, 
+Given the sequence $A$, where 
 
 $$
 \begin{aligned}
@@ -30,7 +30,7 @@ a_n &= f\left( a_0, a_1, \ldots, a_{n-1} \right).
 \end{aligned}
 $$
 
-In most cases, the function $f$ isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
+In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
  
 ### Example: The factorial function
 
@@ -58,20 +58,21 @@ $$
 \tag{1}
 n! = 
 \begin{cases}
-1, & n \in \{0, 1\}; \\
-n (n - 1)!, & n \in \{2, 3, \ldots \}.
+1, & n  = 0; \\
+n (n - 1)!, & n \in \{1, 2, 3, \ldots \}.
 \end{cases}
 $$
 
 Using this form, we might compute $5!$ in the following manner. (Don't worry about the crazy number of parentheses: they're not necessary for the computation, but they're useful in the explanation after the computations.)
 
-$$  
-\begin{aligned}  
-5! &= \Bigg (5! \Bigg ) \\
-&= \Bigg (5 \cdot \bigg (4! \bigg ) \Bigg ) \\
-&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3! \Big ) \bigg ) \Bigg ) \\
-&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2! \big ) \Big ) \bigg ) \Bigg ) \\
-&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2 \cdot \left ( 1! \right ) \big ) \Big ) \bigg ) \Bigg ) \\
+$$
+\begin{aligned}
+5! &= \Bigg (5 \cdot 4! \Bigg ) \\
+&= \Bigg (5 \cdot \bigg (4 \cdot 3! \bigg ) \Bigg ) \\
+&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot 2! \Big ) \bigg ) \Bigg ) \\
+&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2 \cdot 1! \big ) \Big ) \bigg ) \Bigg ) \\
+&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2 \cdot \left (1 \cdot 0! \right ) \big ) \Big ) \bigg ) \Bigg ) \\
+&= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2 \cdot \left (1 \cdot 1 \right ) \big ) \Big ) \bigg ) \Bigg ) \\
 &= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot \big ( 2 \cdot 1  \big ) \Big ) \bigg ) \Bigg ) \\
 &= \Bigg (5 \cdot \bigg (4 \cdot \Big ( 3 \cdot  2   \Big ) \bigg ) \Bigg ) \\
 &= \Bigg (5 \cdot \bigg (4 \cdot 6 \bigg ) \Bigg ) \\
@@ -80,7 +81,7 @@ $$
 \end{aligned}  
 $$
 
-Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a function for computing the factorial function. So, in order to compute $5!$, we start executing the method for that. But, using the recurrence relation above, we compute $5!$ by computing the product of $5$ and $4!$; so, in order to compute the original product, we must first compute $4!$; this adds an inner set of parenthese in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
+Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. So, in order to compute $5!$, we start executing the method for that. Using the recurrence relation above, we compute $5!$ by computing the product of $5$ and $4!$; so, in order to compute the original product, we must first compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
 
 When we get to an expression that includes $1!$, we don't need to break that term down any further, since our definition tells us that $1! = 1$. (This is a _stopping condition._) From that point, we're actually able to start completing the computations that have been waiting: in each of the last 5 lines, we're replacing a set of parentheses with the result of computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
 
