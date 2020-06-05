@@ -289,7 +289,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
 
 ### Repository
 
-Commit your work to Git (after completing each task&mdash;including optional tasks&mdash;if not more often), and push your commits to GitHub.
+Commit your work to Git after completing each task (if not more often than that), including optional tasks, and push your commits to GitHub.
 
 * Your initial commit &amp; push (only) should be done using the **VCS/Import into Version Control/Share Project on GitHub** command. The remote (GitHub) repository must be named `recursion` (please note the letter casing).
 
