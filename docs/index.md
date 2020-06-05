@@ -415,3 +415,8 @@ Commit your work to Git (after completing each task&mdash;including optional tas
 ```
 Testing
 ```
+
+```java
+public static void main(String... args) {
+}
+```
