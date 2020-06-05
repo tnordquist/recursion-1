@@ -370,7 +370,11 @@ Commit your work to Git (after completing each task&mdash;including optional tas
              | `"A man, a plan, a dam - Hoover!"` | `false` |
              | `"aBbA"` | `true` |
           
- * Implement &amp; test iterative 
+* Implement &amp; test iterative approach 
+
+    1. Implement a `Palindromes.testIterative` method, with the same modifiers, return type, and parameter type as `Palindromes.testRecursive`, but using an iterative approach (e.g. iterating over the characters of a `String`, comparing corresponding characters from the left and right sides of the `String` to each other).
+    
+    2. Add a `testIterative` test method to the `PalindromesTest` class. This method should have the same annotation, modifiers, and return type as `PalindromesTest.testRecursive`, and should use the same test cases&mdash;but the actual values tested (against the expected values) should be those returned from `Palindromes.testIterative`, instead of `Palindromes.testRecursive`.
  
 ### Javadocs
 
