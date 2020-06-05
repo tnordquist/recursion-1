@@ -2,15 +2,11 @@
 
 ## Overview
 
-An introduction to recursion in Java, using the well-known problems:
+An introduction to recursion in Java, using two well-known problems:
 
 * Computing factorials.
 
-* Computing Fibonacci numbers.
-
 * Testing strings to determine whether they are palindromes.
-
-* Euclid's algorithm for finding the greatest common divisor of 2 integers.
 
 For more information, see [docs](index.md).
 

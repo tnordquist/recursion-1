@@ -89,10 +89,16 @@ div.wrapper {
                     
                 }
 
-                &.tag-h3, &.tag-h4, &.tag-h5, &.tag-h6 {
-                    display: none;
+                &.tag-h3 {
+                    text-align: right;
+                    list-style-type: circle;
+                    direction:rtl;
+                    margin: 0 1em;
                 }
 
+                &.tag-h4, &.tag-h5, &.tag-h6 {
+                    display: none;
+                }
             }
         }
         

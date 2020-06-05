@@ -28,13 +28,14 @@ a_n &= f\left( a_0, a_1, \ldots, a_{n-1} \right).
 \end{aligned}
 $$
 
-In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
+<a name="factorial-iterative"></a>In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
  
 ### Example: Factorials
 
 The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
 
 $$
+\tag{1}
 n! = 
 \begin{cases}
 1, & n = 0; \\
@@ -42,7 +43,7 @@ n! =
 \end{cases}
 $$
 
-<a name="fn1"></a>Note that the $\prod$ symbol is the product operator. In this case, we would read 
+<a name="factorial-recursive"></a>Note that the $\prod$ symbol is the product operator. In this case, we would read 
 
 $$
 \prod_{i=1}^n i
@@ -53,7 +54,7 @@ as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using
 There are other ways to define the factorial function, including this one that employs a recurrence relation:  
 
 $$
-\tag{1}
+\tag{2}
 n! = 
 \begin{cases}
 1, & n  = 0; \\
@@ -85,15 +86,17 @@ When we get to an expression that includes $0!$, we don't need to break that ter
 
 What we're seeing here is&mdash;essentially&mdash;the internal workings of computing $5!$ by recursion: each time we replace $m!$ with $(m \cdot (m - 1)!)$, we're starting a new recursive computation. Each time we replace a set of parentheses with the computed value, we're completing a recursive computation. Eventually (if we've done our job correctly), we have no parentheses left&mdash;instead, we have the result, which (in this case) is $120$.
  
-As it turns out, the expression for the factorial function specified in [(1)](#fn1) can be translated to code quite easily&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
+As it turns out, the expression for the factorial function specified in [(2)](#factorial-recursive) can be translated to code quite easily&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
   
 ## Non-mathematical problems
 
-Recursion isn't limited to mathematical problems. Many types of non-mathematical problems can be expressed in recursive terms. A number of puzzles&mdash;such as the _Tower of Hanoi_&mdash;can best be understood in recursive terms. The task of parsing the source code of many programming languages, during compilation, is often expressed&mdash;in the design as well as the implementation&mdash;as a recursive process. Even parsing natural language is&mdash;in part&mdash;a recursive task.
+<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many types of non-mathematical problems can be expressed in recursive terms. A number of puzzles&mdash;such as the _Tower of Hanoi_&mdash;can best be understood in recursive terms. The task of parsing the source code of many programming languages, during compilation, is often expressed&mdash;in the design as well as the implementation&mdash;as a recursive process. Even parsing natural language is&mdash;in part&mdash;a recursive task.
 
 ### Example: Palindromes
 
-A _palindrome_ is a sequence of characters that reads the same forward and backward. Usually, we qualify this definition a bit, by skipping non-alphanumeric characters (punctuation, whitespace, special symbols like &reg;, etc.) and ignoring character casing. (As a rule, we also skip subscripts and superscripts, even though they are usually alphanumeric.)
+A _palindrome_ is a sequence of characters that reads the same forward and backward.$$\tag{3}$$
+
+Usually, we qualify this definition a bit, by skipping non-alphanumeric characters (punctuation, whitespace, special symbols like &reg;, etc.) and ignoring character casing. (As a rule, we also skip subscripts and superscripts, even though they are usually alphanumeric.)
 
 With the qualified definition above, we would consider all of the following to be palindromes:
 
@@ -107,13 +110,13 @@ Somewhat less obviously, we also consider these to be palindromes:
 * X
 * 
 
-<a name="fn2"></a>That is, any single character, or even an empty string, reads the same forward and backward.
+That is, any single character, or even an empty string, reads the same forward and backward.
 
-As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
+<a name="palindrome-recursive"></a>As we move from the basic definition to code (e.g. if we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
 Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
-> A string $S$ is a palindrome if and only if$$\tag{2}$$ 
+> A string $S$ is a palindrome if and only if$$\tag{4}$$ 
 > * the number of characters in the string is 0 or 1; 
 > * **OR** 
 >     * the first and last characters of the string are the same,
@@ -129,7 +132,7 @@ Please note these key points about the definition:
 
 Take a few minutes to read and understand the definition. Then try to apply it to one of the palindromes listed above, or so some other palindrome you know&mdash;or some synthetic palindrome you come up with, such as "XYX". Try also to applying it to a string that's not a palindrome.  
     
-Though the definition specified in [(2)](#fn2) is more verbose than "a palindrome is a string that reads the same forward and backward," it is still reasonably clear; more importantly, it can be translated to code in a very direct fashion, resulting in an implementation that will be easy for us to compare for correctness with the original definition.
+Though the definition specified in [(4)](#palindrome-recursive) is more verbose than "a palindrome is a string that reads the same forward and backward," it is still reasonably clear; more importantly, it can be translated to code in a very direct fashion, resulting in an implementation that will be easy for us to compare for correctness with the original definition.
 
 ## Advantages of recursion
 
@@ -147,7 +150,7 @@ The main disadvantages of recursion (apart from the difficulty we might have in 
 
     With some language/compiler combinations, if the recursive implementation is written in a particular fashion, the compiler is able to compile the recursive code into an iterative form in the byte code or machine code. Currently, Java does not do that&mdash;though some other languages running on the JVM, such as Scala, are capable of this. In any case, this does require that our code is written in a very specific way. (It can be proven that _any_ recursive implementation can be transformed into an iterative one. However, performing such a transformation isn't a trivial process.)
     
-* When using recursion, we have to be even more careful than usual with stopping conditions. Notice that both of our example definitions, [(1)](#fn1) and [(2)](#fn2), have stopping conditions: in the [factorial](#fn1) case, if $n = 0$, we don't have to perform any recursive evaluation; in the [palindrome](#fn2) case, if the string length is 0 or 1, there's no need for recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would never terminate (at least not in a useful fashion). 
+* When using recursion, we have to be even more careful than usual with stopping conditions. Notice that both of our example recursive definitions, [(2](#factorial-recursive) and [(4)](#palindrome-recursive), have stopping conditions: in the [factorial](#factorial-recursive) case, if $n = 0$, we don't have to perform any recursive evaluation; in the [palindrome](#palindrome-recursive) case, if the string length is 0 or 1, there's no need for recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would never terminate (at least not in a useful fashion). 
 
     In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the virtual machine doesn't terminate. Code on other threads will continue to run; if those threads are running on on other CPUs or cores, they might not even be affected.
     
@@ -163,25 +166,32 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
  
      * JDK version: 11
      * Project name: `recursion`
-     * Project location: `~/Desktop/projects/bootcamp/recursion` (`~` represents the user's home directory; slash direction should be adjusted as necessary for the platform.) 
+     * Project location: `~/Desktop/projects/bootcamp/recursion` 
+     
+         (`~` represents the current user's home directory, but can only be used in a file path in OS X and Linux; in general, you should simply ensure that the location entered has the specified relationship to the current user's home directory. The slash direction should be adjusted as necessary for the platform.) 
      
 2. Use the **File/Project Structure** command to configure the `recursion` module (the only module) as follows: 
 
      * **Sources** must include a `test` directory (in the project root), configured as a **Tests** (test sources) directory.
+     
      * **Dependencies** must include JUnit5 with **Test** scope. 
 
 ### Factorials
 
 #### Implementation
 
-1. Create a class with the fully qualified class name `edu.cnm.deedpive.Factorial`.
+1. Create a class with the fully qualified class name `edu.cnm.deedpive.Factorials`.
 
-2. In the class created in step 1, define a method implementing the the recursive approach shown in [(1)](#fn1), conforming to these specifications:
+2. In the class created in step 1, define a method implementing the the recursive approach shown in [(2)](#factorial-recursive), conforming to these specifications:
 
     * Method name: `computeRecursive`
+
     * Access level: `public`
+
     * Scope: `static`
+
     * Return type: `long`
+
     * Parameter: 
         * Type: `int` 
         * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
@@ -192,22 +202,156 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
 
 #### Tests
 
-1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialTest`.
+1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialsTest`.
 
-    Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
+    <a name="factorial-test-hint"></a>Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
     
 2. In the test class, define a method conforming to the following:
 
     * Method name: `computeRecursive`
-    * Access level: _(default/package-private)_
-    * Return type: `void`
-    * Parameters: none 
-    * Behavior: Use the appropriate JUnit5 assertion(s) to test the cases in the table below. The first column shows the value that should be passed as an argument to the `Factorial.computeRecursive` method; the second shows the expected value to be returned (if an exception isn't thrown); the third shows the expected exception (if any).
     
-         | `n` | Expected return value | Expected exception |
+    * Annotation: `@Test`
+
+    * Access level: _(default/package-private)_
+
+    * Return type: `void`
+
+    * Parameters: none 
+
+    * Behavior: Use the appropriate JUnit5 assertion(s) to test the cases in the table below. The first column shows the value that should be passed as an argument to the `Factorials.computeRecursive` method; the second shows the expected value to be returned (if an exception isn't thrown); the third shows the expected exception (if any).
+    
+         | `n` | Expected return value of `Factorials.computeRecursive(n)` | Expected exception |
          |:-:|:-:|:-:|
-         | 0 | 1 | _(none)_ |
-         | 1 | 1 | _(none)_ |
-         | 5 | 120 | _(none)_ |
-         | 10 | 3628800 | _(none)_ |
-         | -1 | _(none)_ | `IllegalArgumentException` |
+         | `0` | `1` | _(none)_ |
+         | `1` | `1` | _(none)_ |
+         | `5` | `120` | _(none)_ |
+         | `10` | `3628800` | _(none)_ |
+         | `-1` | _(none)_ | `IllegalArgumentException` |
+
+        Note: If using a `for` loop to iterate over the test cases, the final test case (testing for an exception) should be handled outside of that loop.
+        
+### Palindromes
+
+#### Implementation
+
+1. Create a class with the fully qualified class name `edu.cnm.deedpive.Palindromes`.
+
+2. In the class created in step 1, define a method implementing the the recursive approach shown in [(4)](#palindrome-recursive), conforming to these specifications:
+
+    * Method name: `testRecursive`
+    
+    * Access level: `public`
+    
+    * Scope: `static`
+    
+    * Return type: `boolean`
+    
+    * Parameter: 
+        * Type: `String` 
+        * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
+    
+    * Behavior:
+        * If parameter value is a palindrome, the method must return `true`; otherwise, the method must return `false`.
+        * The method should assume that the parameter will not contain any punctuation or spaces, and that all characters will use the same letter case.
+
+#### Tests
+
+1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.PalindromesTest`.
+
+    (See [hint in test steps for factorials](#factorial-test-hint) for tips on using IntelliJ IDEA shortcuts to simply this task and the one that follows.)
+    
+2. In the test class, define a method conforming to the following:
+
+    * Method name: `computeRecursive`
+    
+    * Annotation: `@Test`
+    
+    * Access level: _(default/package-private)_
+    
+    * Return type: `void`
+    
+    * Parameters: none 
+    
+    * Behavior: Use the appropriate JUnit5 assertion(s) to test the cases in the table below. The first column shows the value that should be passed as an argument to the `Palindromes.computeRecursive` method; the second shows the expected value to be returned.
+    
+         | `s` | Expected return value of `Palindromes.testRecursive(s)` |
+         |:-:|:-:|
+         | `"radar"` | `true` |
+         | `"sonar"` | `false` |
+         | `"abba"` | `true` |
+         | `"abb"` | `false` |
+         | `"x"` | `true` |
+         | `""` | `true` |
+
+        Note: Remember that your current implementation of `Palindromes.testRecursive` is assuming that the characters in the parameter value will all be the same case, and that they will only be alpha-numeric. Be careful not to mix cases in any single argument, and not to include any spaces or punctuation in the arguments.
+
+### Repository
+
+Commit your work to Git (after completing each task&mdash;including optional tasks&mdash;if not more often), and push your commits to GitHub.
+
+* Your initial commit &amp; push (only) should be done using the **VCS/Import into Version Control/Share Project on GitHub** command. The remote (GitHub) repository must be named `recursion` (please note the letter casing).
+
+* Subsequent commits should be performed using **VCS/Commit**.
+
+* Pushing to GitHub can be performed when committing, or with the **VCS/Git/Push** command.
+  
+## Optional tasks
+
+### Factorials
+
+* Reduce recursive invocations by 1
+
+    1. Note that $1! = 0! = 1$.
+    
+    2. Modify your implementation of `Factorials.computeRecursive` to handle computation of $1!$ without recursion&mdash;that is, modify the stopping condition to include a parameter value of 1.  
+
+* <a name="handle-large-values"></a>Handle large values 
+
+    1. Change the return type of `Factorials.computeRecursive` to `BigInteger`. Note that this will require using a method of that class (instead of the `*` operator) for the multiplication.
+    
+    2. Modify the `FactorialsTest.computeRecursive` method to use the `BigInteger` type for the expected and actual values.
+
+* Implement &amp; test an iterative approach
+
+    1. Implement a `Factorials.computeIterative` method, with the same modifiers, return type, and parameter type as `Factorials.computeRecursive`, but using the iterative computation method given in [(1)](#factorial-iterative).
+    
+    2. Add a `computeIterative` test method to the `FactorialsTest` class. This method should have the same annotation, modifiers, and return type as `FactorialsTest.computeRecursive`, and should use the same test cases&mdash;but the actual values tested (against the expected values) should be those returned from `Factorials.computeIterative`, instead of `Factorials.computeRecursive`.
+    
+* Javadocs
+
+    1. Add Javadoc comments to the class and method(s) in `Factorials`.
+    
+        * Every documentation comment should include a summary sentence (at least), and any additional descriptive sentences that you feel necessary to describe the purpose or functionality of the documented element.
+        
+        * Avoid the _imperative voice_ in your comments; instead use (preferably) the _active voice_ or (when necessary) the _passive voice_.
+        
+            * Bad: "Compute the factorial function value (n!) for the provided parameter value."
+            
+            * Better: "Computes the factorial function value (n!) for the provided parameter value."  
+
+            * Even better: "Computes the factorial function value (n!) for the provided parameter value. Since the return type is {@code long}, the value returned for parameter values greater than 20 will not be correct." 
+            
+                (Note: The additional description sentence above is only applicable if you have not already completed the task to [handle large values](#handle-large-values).)
+    
+        * Remember to include summaries (at least) for the `@param` and `@return` tags of the method(s). 
+    
+        (Hint: Use the IntelliJ IDEA [automatic comments feature](https://www.jetbrains.com/help/idea/working-with-code-documentation.html#auto-comment) to generate the Javadoc comment structures; then simply add the summary sentences and any additional descriptions.)
+    
+    2. Use the **Tools/Generate Javadoc** command to generate documentation files in HTML format.
+    
+        * Generate Javadoc scope: Whole project
+        
+        * Include test sources: No (i.e. unchecked)
+        
+        * Output directory: `docs/api` within the project directory (Use the folder button in the **Output directory** field to browse to and select the project's directory; then edit the resulting path in **Output directory** by appending `\docs\api` or `/docs/api`, for Windows or OS X, respectively).
+        
+        * Documentation level (slider): protected
+        
+        * Other command line arguments: `-windowtitle "Recursion examples" -link https://docs.oracle.com/en/java/javase/11/docs/api/`
+            
+            (Note: The command line arguments must be entered as a single line, regardless of their appearance in this page.)  
+        
+        * _Other options: (Leave set to default values)_
+        
+### Palindromes
+
