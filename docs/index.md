@@ -4,9 +4,9 @@ description: "An introduction to recursion with examples and code exercises"
 layout: default
 ---
 
-## Summary
+## Introduction
 
-In computing, _recursion_ is a general approach in which the solution to a problem with a given set of input values is defined in terms of solutions to the same problem with a reduced set of input values, or with input values that are smaller in magnitude. By re-invoking with progressively smaller problems, until we reach some specified _stopping condition_, we can then incorporate the solutions to the smaller problems into the solutions to the larger problems.
+In computing, _recursion_ is a general approach in which the solution to a problem with a given set of input values is defined in terms of solutions to the same problem with a reduced set of input values, or with input values that are smaller in magnitude. By re-invoking with progressively smaller inputs, until we reach some specified _stopping condition_, we can then incorporate the solutions to the smaller problems into the solutions to the larger problems.
 
 ## Mathematical recurrence
 
@@ -34,7 +34,7 @@ Problems that can be defined using recurrence relations are prime candidates for
  
 ### Example: Factorials
 
-<a name="factorial-iterative"></a>The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
+<a id="factorial-iterative"></a>The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
 
 $$
 \tag{1}
@@ -53,7 +53,7 @@ $$
 
 as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using the product operator, we could write this as $1 \cdot 2 \cdot \ldots \cdot n$.
 
-<a name="factorial-recursive"></a>There are other ways to define the factorial function, including this one that employs a recurrence relation:  
+<a id="factorial-recursive"></a>There are other ways to define the factorial function, including this one that employs a recurrence relation:  
 
 $$
 \tag{2}
@@ -95,7 +95,7 @@ As it turns out, the expression for the factorial function specified in [(2)](#f
 Recursion isn't limited to computing mathematical functions. Many problems that are not strictly mathematical in nature can be specified in recursive terms, with potential for recursive implementation. The most widely used sorting algorithms are usually implemented in recursive forms. A depth-first search in a tree data structure is easily implemented as a recursive operation. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (for compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
 
 ### Example: Palindromes
-<a name="palindrome-traditional"></a>
+<a id="palindrome-traditional"></a>
 $$\tag{3}$$A _palindrome_ is a sequence of characters that reads the same forward and backward.
 
 Usually, we qualify this definition a bit, by skipping non-alphanumeric characters (punctuation, whitespace, special symbols like &reg;, etc.) and ignoring character casing. (As a rule, we also skip subscripts and superscripts, even though they are usually alphanumeric.)
@@ -116,7 +116,7 @@ That is, any single character, or even an empty string, reads the same forward a
 
 As we move from the basic definition to code (if, for example, we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
-<a name="palindrome-recursive"></a>Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
+<a id="palindrome-recursive"></a>Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
 > $$\tag{4}$$A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
@@ -212,7 +212,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
 
 1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialsTest`.
 
-    <a name="factorial-test-hint"></a>Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
+    <a id="factorial-test-hint"></a>Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
     
 2. In the test class, define a method conforming to the following:
 
@@ -307,7 +307,7 @@ Commit your work to Git after completing each task (if not more often than that)
 
 ### Factorials
 
-* <a name="handle-large-values"></a>Handle large values 
+* <a id="handle-large-values"></a>Handle large values 
 
     1. Change the return type of `Factorials.computeRecursive` to `BigInteger`. Note that this will require using a method of that class (instead of the `*` operator) for the multiplication.
     
