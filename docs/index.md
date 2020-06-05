@@ -10,8 +10,6 @@ In computing, _recursion_ is a general approach in which the solution to a probl
 
 ## Recurrence relations in mathematics
 
-### Introduction
-
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
 Given the sequence $A$, where 
@@ -32,7 +30,7 @@ $$
 
 In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
  
-### Example: The factorial function
+### Example: Factorials
 
 The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
 
@@ -81,11 +79,11 @@ $$
 \end{aligned}  
 $$
 
-Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. In order to compute $5!$, we start executing the method: Using the recurrence relation above, we compute $5!$ by computing the product of $5$ and $4!$. But in order to compute that product, we must first compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
+Imagine that each set of parentheses, on the right side of the equals signs, represents execution of a computational method for evaluating the factorial function. In order to compute $5!$, we take the product of $5$ and $4!$. But in order to compute that, we need to compute $4!$; this adds an inner set of parentheses in the second line. In the third line, we see another set of parentheses, in which we will compute $3!$ (in order to compute $4!$), and so on.
 
-When we get to an expression that includes $0!$, we don't need to break that term down any further, since our definition tells us that $0! = 1$. (This is a _stopping condition._) From that point, we're actually able to start completing the computations that are pending: in each of the last 5 lines, we're replacing a set of parentheses with the result obtained by computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
+When we get to an expression that includes $0!$, we don't need to break that term down any further, since our definition tells us that $0! = 1$. (This is a _stopping condition._) From that point, we can start completing the computations that are pending: in each of the last 5 lines, we're replacing a set of parentheses with the result obtained by computing the product inside those parentheses; we can think of this operation as completing execution of one of our factorial computations.
 
-What we're seeing here is&mdash;essentially&mdash;the internal workings of computing $5!$ by recursion: each time we replace $m!$ with $(m \cdot (m - 1)!)$, we're starting a new recursion computation. Each time we replace a set of parentheses with the computed value, we're completing a recursive computation. Eventually (if we've done our job correctly), we have no parentheses left&mdash;instead, we have the result, which (in this case) is $120$.
+What we're seeing here is&mdash;essentially&mdash;the internal workings of computing $5!$ by recursion: each time we replace $m!$ with $(m \cdot (m - 1)!)$, we're starting a new recursive computation. Each time we replace a set of parentheses with the computed value, we're completing a recursive computation. Eventually (if we've done our job correctly), we have no parentheses left&mdash;instead, we have the result, which (in this case) is $120$.
  
 As it turns out, the expression for the factorial function specified in [(1)](#fn1) can be translated to code quite easily&mdash;not just Java, but almost any programming language. Even better, the expression in code looks so much like the mathematical expression that it is very easy to verify that the former correctly expresses the latter.
   
@@ -143,14 +141,17 @@ The last paragraph of both of the 2 examples above get at some of the key benefi
  
 ## Disadvantages of recursion
 
-The main disadvantages of recursion (apart from the difficulty we might have wrapping our heads around the concept at first) have to do with method invocation and the corresponding stack space. 
+The main disadvantages of recursion (apart from the difficulty we might have in wrapping our heads around the concept at first) have to do with method invocation and the corresponding stack space. 
 
-* In Java (and many other languages), recursive method invocation is&mdash;just as the name implies&mdash;invocation. That means that each invocation requires additional stack space and a small amount of processing time for the invocation itself.
+* In Java (and many other languages), recursive method invocation is&mdash;just as the name implies&mdash;method invocation. That means that each invocation add a stack frame to the stack and requires a small amount of processing time for the invocation itself.
 
-    With some language/compiler combinations, if the recursive implementation is written in a particular fashion, the compiler may be able to compile the recursive code into an iterative form in the byte code or machine code. Currently, Java does not do that&mdash;though some other languages running on the JVM, such as Scala, are capable of this. In any case, this does require that our code is written in a very specific way.
+    With some language/compiler combinations, if the recursive implementation is written in a particular fashion, the compiler is able to compile the recursive code into an iterative form in the byte code or machine code. Currently, Java does not do that&mdash;though some other languages running on the JVM, such as Scala, are capable of this. In any case, this does require that our code is written in a very specific way. (It can be proven that _any_ recursive implementation can be transformed into an iterative one. However, performing such a transformation isn't a trivial process.)
     
-* We must be even more careful than usual about stopping conditions when using recursion. Notice that both of our example definitions, [(1)](#fn1) and [(2)](#fn2), have stopping conditions. In the [factorial](#fn1) case, if $n \in \{0, 1\}$ (that is if $n = 0$ or $n = 1$), then we don't need to perform any recursive evaluation. Similarly, in the [palindrome](#fn2) case, if the string length is 0 or 1, we don't have to perform any recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would not terminate (at least not in a useful fashion). 
+* When using recursion, we have to be even more careful than usual with stopping conditions. Notice that both of our example definitions, [(1)](#fn1) and [(2)](#fn2), have stopping conditions: in the [factorial](#fn1) case, if $n = 0$, we don't have to perform any recursive evaluation; in the [palindrome](#fn2) case, if the string length is 0 or 1, there's no need for recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would never terminate (at least not in a useful fashion). 
 
-    In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the machine (virtual or otherwise) doesn't crash. Code on other threads (particularly those threads assigned to cores other than that assigned to the infinitely-looping thread) will continue to run.
+    In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the virtual machine doesn't terminate. Code on other threads will continue to run; if those threads are running on on other CPUs or cores, they might not even be affected.
     
-    In a recursive implementation, bad/missing stopping conditions will most often result in stack memory being exhausted. In the best case,  
+    In a recursive implementation, bad/missing stopping conditions will most often result in stack memory being exhausted (in Java, this causes a `StackOverflowError`). In the best case, this won't case the JVM to terminate (since each thread has its own stack)&mdash;but it usually does.
+
+## Tasks
+
