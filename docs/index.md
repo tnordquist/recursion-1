@@ -28,13 +28,13 @@ a_n &= f\left( a_0, a_1, \ldots, a_{n-1} \right).
 \end{aligned}
 $$
 
-<a name="factorial-iterative"></a>In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
+In practice, the function $f$ usually isn't expressed as a function of _all_ the preceding terms, but of a small number of terms immediately preceding $a_n$. Also, note that the recurrence relation usually doesn't define $A$ completely: the definition generally includes one or more _initial values_, as well. 
  
 Problems that can be defined using recurrence relations are prime candidates for recursive implementations.
  
 ### Example: Factorials
 
-The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
+<a name="factorial-iterative"></a>The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
 
 $$
 \tag{1}
@@ -45,7 +45,7 @@ n! =
 \end{cases}
 $$
 
-<a name="factorial-recursive"></a>Note that the $\prod$ symbol is the product operator. In this case, we would read 
+Note that the $\prod$ symbol is the product operator. In this case, we would read 
 
 $$
 \prod_{i=1}^n i
@@ -53,7 +53,7 @@ $$
 
 as "the product, as $i$ varies from 1 to $n$ (inclusive), of $i$." Without using the product operator, we could write this as $1 \cdot 2 \cdot \ldots \cdot n$.
 
-There are other ways to define the factorial function, including this one that employs a recurrence relation:  
+<a name="factorial-recursive"></a>There are other ways to define the factorial function, including this one that employs a recurrence relation:  
 
 $$
 \tag{2}
@@ -92,10 +92,10 @@ As it turns out, the expression for the factorial function specified in [(2)](#f
   
 ## Other applications
 
-<a name="palindrome-traditional"></a>Recursion isn't limited to computing mathematical functions. Many problems that are not strictly mathematical in nature can be specified in recursive terms, with potential for recursive implementation. The most widely used sorting algorithms are usually implemented in recursive forms. A depth-first search in a tree data structure is easily implemented as a recursive operation. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (for compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
+Recursion isn't limited to computing mathematical functions. Many problems that are not strictly mathematical in nature can be specified in recursive terms, with potential for recursive implementation. The most widely used sorting algorithms are usually implemented in recursive forms. A depth-first search in a tree data structure is easily implemented as a recursive operation. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (for compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
 
 ### Example: Palindromes
-
+<a name="palindrome-traditional"></a>
 $$\tag{3}$$A _palindrome_ is a sequence of characters that reads the same forward and backward.
 
 Usually, we qualify this definition a bit, by skipping non-alphanumeric characters (punctuation, whitespace, special symbols like &reg;, etc.) and ignoring character casing. (As a rule, we also skip subscripts and superscripts, even though they are usually alphanumeric.)
@@ -114,9 +114,9 @@ Somewhat less obviously, we also consider these to be palindromes:
 
 That is, any single character, or even an empty string, reads the same forward and backward, and is thus a palindrome (though certainly a trivial one).
 
-<a name="palindrome-recursive"></a>As we move from the basic definition to code (if, for example, we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
+As we move from the basic definition to code (if, for example, we want to write a method that checks to see if a `String` specified in a parameter is a palindrome, and return the corresponding `boolean` result), the latter might look very different from the definition in natural language. But a recursive implementation is often very close to the natural language expression&mdash;as long as that natural language expression is also recursive.
 
-Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
+<a name="palindrome-recursive"></a>Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
 > $$\tag{4}$$A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
@@ -197,16 +197,22 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
     * Parameter: 
         * Type: `int` 
         * Name: _(Not dictated by the specification; should be chosen as the developer sees fit.)_
-    * Behavior:<a name="factorial-test-hint"></a>
+    * Behavior:
         * If parameter value < 0, `IllegalArgumentException` must be thrown;
-        * otherwise, if parameter value &le; 20, correct factorial function value must be returned;
-        * otherwise, behavior is undefined (i.e. no exception should be thrown, but the method is not required to return the correct value).
+        * otherwise, if parameter value = 0, a value of 1 must be returned (this is the stopping condition);
+        * otherwise, the correct factorial function value must be returned (up to and including a parameter value of 20), using the recursive definition.
 
+    Notes: 
+    
+     * The implementation shouldn't do anything special if the parameter value is greater than 20; however, the resulting value will overflow the range of `long` in that case; the implementation will thus not be expected to return the correct value above that point.
+     
+    * You might have noticed&mdash;or maybe you already knew&mdash;that $1! = 0! = 1$. Thus, the number of recursive invocations can be reduced by 1, in most cases, by including a parameter value of 1 in the stopping condition. Whether to make this modification is up to you.
+    
 #### Tests
 
 1. Create a test class (in the `test` source root) with the fully qualified name `edu.cnm.deepdive.FactorialsTest`.
 
-    Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
+    <a name="factorial-test-hint"></a>Hint: IntelliJ IDEA can create the test class, with the required name, in the required location, using the **Code/Generate/Test** command, or the **Create Test** _intention action_ (accessed by clicking on the class name in the class declaration, then typing _[Alt]-[Enter]_ on Windows and Linux, or _[Option]-[Return]_ on OS X.) With the appropriate selection of options in the **Create Test** dialog that appears, the first few items of the next point will also be taken care of by IntelliJ IDEA.
     
 2. In the test class, define a method conforming to the following:
 
@@ -297,15 +303,9 @@ Commit your work to Git after completing each task (if not more often than that)
 
 * Pushing to GitHub can be performed when committing, or with the **VCS/Git/Push** command.
   
-## Optional tasks
+## Advanced tasks
 
 ### Factorials
-
-* Reduce recursive invocations by 1
-
-    1. Note that $1! = 0! = 1$.
-    
-    2. Modify your implementation of `Factorials.computeRecursive` to handle computation of $1!$ without recursion&mdash;that is, modify the stopping condition to include a parameter value of 1.  
 
 * <a name="handle-large-values"></a>Handle large values 
 
