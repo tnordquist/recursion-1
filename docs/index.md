@@ -234,6 +234,7 @@ To explore recursion in Java, we'll implement the the 2 examples above: factoria
          | `1` | `1` | _(none)_ |
          | `5` | `120` | _(none)_ |
          | `10` | `3628800` | _(none)_ |
+         | `13` | `6227020800L` | _(none)_ |
          | `-1` | _(none)_ | `IllegalArgumentException` |
 
         Note: If using a `for` loop to iterate over the test cases, the final test case (testing for an exception) should be handled outside of that loop.
@@ -316,7 +317,7 @@ Commit your work to Git after completing each task (if not more often than that)
 * Implement &amp; test iterative approach
 
     1. Implement a `Factorials.computeIterative` method, with the same modifiers, return type, and parameter type as `Factorials.computeRecursive`, but using the iterative computation method given in [(1)](#factorial-iterative).
-    
+        
     2. Add a `computeIterative` test method to the `FactorialsTest` class. This method should have the same annotation, modifiers, and return type as `FactorialsTest.computeRecursive`, and should use the same test cases&mdash;but the actual values tested (against the expected values) should be those returned from `Factorials.computeIterative`, instead of `Factorials.computeRecursive`.
     
 ### Palindromes
