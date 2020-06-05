@@ -94,7 +94,7 @@ As it turns out, the expression for the factorial function specified in [(2)](#f
 
 ### Example: Palindromes
 
-A _palindrome_ is a sequence of characters that reads the same forward and backward.$$\tag{3}$$
+$$\tag{3}$$A _palindrome_ is a sequence of characters that reads the same forward and backward.
 
 Usually, we qualify this definition a bit, by skipping non-alphanumeric characters (punctuation, whitespace, special symbols like &reg;, etc.) and ignoring character casing. (As a rule, we also skip subscripts and superscripts, even though they are usually alphanumeric.)
 
@@ -116,7 +116,7 @@ That is, any single character, or even an empty string, reads the same forward a
 
 Let's take a new definition as a starting point (ignoring the whole question of whitespace, punctuation, and special symbols for now):
 
-> A string $S$ is a palindrome if and only if$$\tag{4}$$ 
+> $$\tag{4}$$A string $S$ is a palindrome if and only if 
 > * the number of characters in the string is 0 or 1; 
 > * **OR** 
 >     * the first and last characters of the string are the same,
