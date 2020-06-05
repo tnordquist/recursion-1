@@ -8,7 +8,7 @@ layout: default
 
 In computing, _recursion_ is a general approach in which the solution to a problem with a given set of input values is defined in terms of solutions to the same problem with a reduced set of input values, or with input values that are smaller in magnitude. By re-invoking with progressively smaller problems, until we reach some specified _stopping condition_, we can then incorporate the solutions to the smaller problems into the solutions to the larger problems.
 
-## Recurrence relations <span class="no-nav">in mathematics</span>
+## Recurrence relations <span class="no-nav" markdown="1">in mathematics</span>
 
 Some mathematical sequences are defined (at least in part) according to a _recurrence relation_ between the terms of the sequence. In this type of definition, the value of the n<sup>th</sup> term of a sequence is defined as a function of the preceding terms. Typically, this type of definition is used for infinite sequences.
 
