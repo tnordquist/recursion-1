@@ -34,7 +34,7 @@ In practice, the function $f$ usually isn't expressed as a function of _all_ the
  
 ### Example: The factorial function
 
-<a name="fn1"></a>The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
+The _factorial_ function (denoted by an exclamation mark after a non-negative integer, or after a symbol representing such an integer) is used in combinatorics, probability, and many other branches of mathematics. It is most often defined as
 
 $$
 n! = 
@@ -44,7 +44,7 @@ n! =
 \end{cases}
 $$
 
-Note that the $\prod$ symbol is the product operator. In this case, we would read 
+<a name="fn1"></a>Note that the $\prod$ symbol is the product operator. In this case, we would read 
 
 $$
 \prod_{i=1}^n i
