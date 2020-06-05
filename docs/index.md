@@ -92,7 +92,7 @@ As it turns out, the expression for the factorial function specified in [(2)](#f
   
 ## Other applications
 
-<a name="palindrome-traditional"></a>Recursion isn't limited to mathematical problems. Many non-mathematical problems can be expressed in recursive terms&mdash;with potential for recursive implementation&mdash;as well. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (during compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
+<a name="palindrome-traditional"></a>Recursion isn't limited to computing mathematical functions. Many problems that are not strictly mathematical in nature can be specified in recursive terms, with potential for recursive implementation. The most widely used sorting algorithms are usually implemented in recursive forms. A depth-first search in a tree data structure is easily implemented as a recursive operation. A number of puzzles, such as the _Tower of Hanoi_, can best be understood in recursive terms. The task of parsing (for compilation) the source code of many programming languages is often specified and implemented as a recursive process. Even processing natural language is at least partially a recursive task.
 
 ### Example: Palindromes
 
