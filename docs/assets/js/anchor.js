@@ -16,6 +16,7 @@ function scheduleOffset(delay) {
 
 // Captures click events of all <a> elements with href starting with #
 $(document).on('click', 'a[href^="#"]', function(event) {
+  console.log("Clicked");
   console.log("Scheduling from click");
   scheduleOffset(1);
 });
@@ -26,4 +27,8 @@ $(window).on("load", function() {
     console.log("Scheduling from MathJax queue");
     scheduleOffset(100);
   });
+});
+
+window.addEventListener("hashchange", function () {
+  console.log("Hash changed");
 });
