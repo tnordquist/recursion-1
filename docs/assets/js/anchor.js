@@ -1,5 +1,3 @@
-var ignoreHashChanged = false;
-
 // The function actually applying the offset
 function offsetAnchor() {
   if (location.hash.length !== 0) {
@@ -17,7 +15,6 @@ function scheduleOffset(delay) {
 
 // Captures click events of all <a> elements with href starting with #
 $(document).on('click', 'a[href^="#"]', function(event) {
-  ignoreHashChanged = true;
   scheduleOffset(1);
 });
 
@@ -29,9 +26,5 @@ $(window).on("load", function() {
 });
 
 window.addEventListener("hashchange", function () {
-  if (!ignoreHashChanged) {
-    scheduleOffset(1);
-  } else {
-    ignoreHashChanged = false;
-  }
+  scheduleOffset(1);
 });

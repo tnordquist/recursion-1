@@ -146,17 +146,17 @@ The last paragraph of both of the 2 examples above get at some of the key benefi
  
 ## Disadvantages
 
-The main disadvantages of recursion (apart from the difficulty we might have in wrapping our heads around the concept at first) have to do with method invocation and the corresponding stack space. 
+The main disadvantages of recursion (apart from the difficulty we might have in wrapping our heads around the concept at first) have to do with method invocation and the corresponding stack space requirements. 
 
 * In Java (and many other languages), recursive method invocation is&mdash;just as the name implies&mdash;method invocation. That means that each invocation add a stack frame to the stack and requires a small amount of processing time for the invocation itself.
 
-    With some language/compiler combinations, if the recursive implementation is written in a particular fashion, the compiler is able to compile the recursive code into an iterative form in the byte code or machine code. Currently, Java does not do that&mdash;though some other languages running on the JVM, such as Scala, are capable of this. In any case, this does require that our code is written in a very specific way. (It can be proven that _any_ recursive implementation can be transformed into an iterative one. However, performing such a transformation isn't a trivial process.)
+    With some language/compiler combinations, if the recursive implementation is written in a particular fashion, the compiler is able to compile the recursive code into an iterative form in the byte code or machine code. Currently, Java does not do that&mdash;though some other languages running on the JVM, such as Scala, are capable of this. In any case, this does require that our code is written in a very specific way. (It can be proven that _any_ recursive implementation can be transformed into an iterative one. However, performing such a transformation isn't a trivial process, in general.)
     
-* When using recursion, we have to be even more careful than usual with stopping conditions. Notice that both of our example recursive definitions, [(2](#factorial-recursive) and [(4)](#palindrome-recursive), have stopping conditions: in the [factorial](#factorial-recursive) case, if $n = 0$, we don't have to perform any recursive evaluation; in the [palindrome](#palindrome-recursive) case, if the string length is 0 or 1, there's no need for recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would never terminate (at least not in a useful fashion). 
+* When using recursion, we have to be even more careful than usual with stopping conditions. Notice that both of our example recursive definitions have stopping conditions: in the [factorial](#factorial-recursive) case, if $n = 0$, we don't have to perform any recursive evaluation; in the [palindrome](#palindrome-recursive) case, if the string length is 0 or 1, there's no need for recursive evaluation. If, in our implementations, we were to check for our stopping conditions _after_ we perform recursion (or not check them at all), _we'd never reach our stopping conditions_, and the evaluation would never terminate (at least not in a useful fashion). 
 
-    In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the virtual machine doesn't terminate. Code on other threads will continue to run; if those threads are running on on other CPUs or cores, they might not even be affected.
+    In an iterative implementation, bad or missing stopping conditions can result in an infinite loop&mdash;but the virtual machine doesn't terminate. Code on other threads will continue to run; if those threads are running on on other CPUs or cores, they might not even be affected that much.
     
-    In a recursive implementation, bad/missing stopping conditions will most often result in stack memory being exhausted (in Java, this causes a `StackOverflowError`). In the best case, this won't case the JVM to terminate (since each thread has its own stack)&mdash;but it usually does.
+    In a recursive implementation, bad/missing stopping conditions will most often result in stack memory being exhausted (in Java, this causes a `StackOverflowError`). In the best case, this won't cause the JVM to terminate (since each thread has its own stack)&mdash;but it usually does.
 
 ## Tasks
 
