@@ -346,7 +346,7 @@ Commit your work to Git (after completing each task&mdash;including optional tas
             
             * The `String.removeAll` method can return a `String` with unwanted characters stripped from an input `String`, by invoking it on the input `String`, and passing arguments specifying the appropriate regular expression pattern to match and an empty replacement `String`.
         
-            * The regex pattern `"[\W_]+"` matches any sequence containing 1 or more punctuation, whitespace, or underscore characters.
+            * The regex pattern `"[\W_]+"` matches any sequence of 1 or more punctuation, whitespace, or underscore characters.
  
      2. In the `PalindromesTest` class, defined a method to test the `Palindromes.testDenormalized` method:
      
@@ -411,12 +411,3 @@ Commit your work to Git (after completing each task&mdash;including optional tas
         (Note: The command line arguments must be entered as a single line, regardless of their appearance in this page.)  
     
     * _Other options: (Leave set to default values)_
-    
-```
-Testing
-```
-
-```java
-public static void main(String... args) {
-}
-```

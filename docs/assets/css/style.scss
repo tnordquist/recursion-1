@@ -77,6 +77,9 @@ div.wrapper {
         width: 180px;
         
         ul {
+
+            font-size: 16px;
+
             li {
             
                 font-family: "Aleo", "Copse", serif;
@@ -89,8 +92,6 @@ div.wrapper {
                     &:hover {
                         text-decoration-line: underline;
                         text-decoration-style: solid;
-                        /* text-decoration-thickness: 2px; */
-                        /* text-decoration-color: #ffd007; */
                     }
                     
                 }
