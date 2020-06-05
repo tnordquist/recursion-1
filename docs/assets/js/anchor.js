@@ -3,7 +3,7 @@ function offsetAnchor() {
   if (location.hash.length !== 0) {
     const banner = $('#banner');
     const bottom = bannerBottom.position().top + bannerBottom.outerHeight(true);
-    window.scrollTo(window.scrollX, window.scrollY - bottom);
+    window.scrollTo(window.scrollX, window.scrollY - 2 * bottom);
   }
 }
 
