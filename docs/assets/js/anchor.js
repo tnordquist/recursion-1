@@ -2,8 +2,8 @@
 function offsetAnchor() {
   if (location.hash.length !== 0) {
     const banner = $('#banner');
-    const bottom = bannerBottom.position().top + bannerBottom.outerHeight(true);
-    window.scrollTo(window.scrollX, window.scrollY - 2 * bottom);
+    const bottom = banner.position().top + banner.outerHeight(true);
+    window.scrollTo(window.scrollX, window.scrollY - bottom);
   }
 }
 
